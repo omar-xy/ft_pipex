@@ -6,7 +6,7 @@
 /*   By: otaraki <otaraki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:42:37 by otaraki           #+#    #+#             */
-/*   Updated: 2023/02/15 16:41:46 by otaraki          ###   ########.fr       */
+/*   Updated: 2023/02/15 16:41:52 by otaraki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,3 @@ char	*check_path(char **s_path, char *cmd)
 	free(j_cmd);
 	return (NULL);
 }
-
-zeb
