@@ -6,7 +6,7 @@
 /*   By: otaraki <otaraki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:42:55 by otaraki           #+#    #+#             */
-/*   Updated: 2023/02/15 15:22:57 by otaraki          ###   ########.fr       */
+/*   Updated: 2023/02/15 16:24:54 by otaraki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	pipex(int fd[], char **fe_cmd, char **se_cmd, char **env)
 		close(fd[0]);
 		close(fd[1]);
 		if (execve(check_path(split_path(env), fe_cmd[0]), fe_cmd, env) == -1)
-			return (error(2));
+			return (error(1));
 	}
 	else if (fork() == 0)
 	{
@@ -34,7 +34,7 @@ int	pipex(int fd[], char **fe_cmd, char **se_cmd, char **env)
 		close(fd[1]);
 		close(fd[0]);
 		if (execve(check_path(split_path(env), se_cmd[0]), se_cmd, env) == -1)
-			return (error(2));
+			return (error(1));
 	}
 	wait(&status);
 	return (0);
