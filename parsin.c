@@ -6,7 +6,7 @@
 /*   By: otaraki <otaraki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:42:37 by otaraki           #+#    #+#             */
-/*   Updated: 2023/02/15 17:00:50 by otaraki          ###   ########.fr       */
+/*   Updated: 2023/02/15 18:07:09 by otaraki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*check_path(char **s_path, char *cmd)
 	char	*j_path;
 
 	i = 0;
-	if (access(cmd, X_OK) == 0) 
+	if (access(cmd, X_OK) == 0)
 		return (cmd);
 	j_cmd = ft_strjoin("/", cmd);
 	if (!j_cmd)

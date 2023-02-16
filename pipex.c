@@ -6,7 +6,7 @@
 /*   By: otaraki <otaraki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 15:42:55 by otaraki           #+#    #+#             */
-/*   Updated: 2023/02/15 17:07:04 by otaraki          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:07:14 by otaraki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	pipex(int fd[], char **fe_cmd, char **se_cmd, char **env)
 		close(fd[1]);
 		close(fd[0]);
 		if (execve(check_path(split_path(env), se_cmd[0]), se_cmd, env) == -1)
-			return (error(3));
+			return (error(2));
 	}
 	wait(&status);
 	return (0);
@@ -52,8 +52,11 @@ int	main(int argc, char **av, char **envp)
 	{
 		f_cmd = ft_split(av[2], ' ');
 		s_cmd = ft_split(av[3], ' ');
-		if (((f_cmd[0][0] == '/') || (s_cmd[0][0] == '/'))
-			&& ((access(f_cmd[0], F_OK) != 0) && (access(s_cmd[0], F_OK) != 0)))
+
+		if (((f_cmd[0][0] == '/')
+			|| (s_cmd[0][0] == '/'))
+			&& ((access(f_cmd[0], F_OK | X_OK) != 0)
+			&& (access(s_cmd[0], F_OK | X_OK) != 0)))
 			return (error(4));
 		infile = open(av[1], O_RDONLY);
 		outfile = open(av[4], O_RDWR | O_CREAT | O_TRUNC, 0777);
@@ -64,6 +67,6 @@ int	main(int argc, char **av, char **envp)
 		pipex(fd, f_cmd, s_cmd, envp);
 		return (0);
 	}
-	write(2, "Error: Missing Args", 20);
+	write(2, "Error: Missing Args\n", 21);
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: otaraki <otaraki@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/31 15:33:52 by otaraki           #+#    #+#              #
-#    Updated: 2023/02/15 15:47:25 by otaraki          ###   ########.fr        #
+#    Updated: 2023/02/16 17:30:06 by otaraki          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = pipex
 LIBFT =	libft/libft.a
 
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 INC = pipex.h \
 
@@ -30,9 +30,13 @@ m = "MakeFileAutoPush"
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME) : $(OBJ)
 	make -C libft
 	$(CC) $(OBJ) -o $(NAME) $(LIBFT)
+
+%.o : %.c pipex.h
+	@${CC} ${CFLAGS} -c -o $@ $<
+	@printf "[compiling %-30s] \r"  ${notdir $@}
 
 clean:
 	make clean -C libft
@@ -50,4 +54,5 @@ git :
 	git commit -m "$(m)"
 	git push 
 
+.SILENT: $(NAME) git re fclean clean
 .PHONY: all clean fclean re

@@ -1,0 +1,12 @@
+Makefile
+errors.c
+errors.o
+libft
+lol
+parsin.c
+parsin.o
+pipex
+pipex-tester
+pipex.c
+pipex.h
+pipex.o
